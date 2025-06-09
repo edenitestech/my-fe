@@ -6,12 +6,22 @@ import commonjs from "@rollup/plugin-commonjs";
 export default defineConfig({
   plugins: [
     react(),
-    // ensure jwt-decode (and any other CJS) get converted properly
-    commonjs({ include: /node_modules/ }),  
+    // Convert all CJS modules under node_modules to ES
+    commonjs({ include: /node_modules/ }),
   ],
-  base: '/public/',
   optimizeDeps: {
-    include: ["jwt-decode"],
+    include: [
+      "jwt-decode",
+      "@tanstack/react-query",
+      "react",
+      "react/jsx-runtime",
+    ],
+  },
+  build: {
+    commonjsOptions: {
+      // make sure Rollup pulls in CJS versions of RCQ
+      include: [/node_modules/],
+    },
   },
 });
 

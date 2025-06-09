@@ -1,6 +1,7 @@
+
 import React from 'react'
 import AppRouter from './routes/AppRouter'
-
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 export default function App() {
   return <AppRouter />
 }
