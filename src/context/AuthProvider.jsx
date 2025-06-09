@@ -1,5 +1,7 @@
 import { createContext, useState, useEffect } from "react";
-import jwtDecode from "jwt-decode";
+import * as jwtDecodeModule from "jwt-decode";
+// jwtDecodeModule may put the function on .default or as a named export:
+const jwtDecode = jwtDecodeModule.default || jwtDecodeModule;
 
 export const AuthContext = createContext();
 
